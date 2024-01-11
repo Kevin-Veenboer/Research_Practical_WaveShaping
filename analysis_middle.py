@@ -3,6 +3,8 @@ import tifffile as tiff
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+from os import listdir
+import pandas as pd
 
 def get_average_focus(image, focus_x, focus_y, radius):
     n = 0
@@ -54,28 +56,26 @@ def get_enhancement(image):
     print(f"Enhancement: {enhancement}")
     print(f"Contrast: {contrast}")
     print(f"Signal-to-Noise Ratio (SNR): {snr}")
-    return enhancement
+    return enhancement, average_focus_intensity, average_background_intensity
 
-image = tiff.imread('Tiffs/Phases/3/move_zstage00001_Measure0001.tif', series=0)
-x_center, y_center = 614, 610
+def get_middle_focus(file):
+    image = tiff.imread(file, series=0)
+    return image[12]
 
-focus_center = image[12]
-pixel_value_center = focus_center[y_center, x_center]
+def main():
+    data = {'Phase': [], 'Enhancement': [], 'Focus': [], 'Background': []}
+    df = pd.DataFrame(data)
+    for i in range(3, 7):
+        path = f"Tiffs/Phases/{i}/"
+        files = listdir(path)
+        enhancement = []
+        for file in files:
+            image = get_middle_focus(path+file)
+            enhancement, focus, background = get_enhancement(image)
+            df.loc[len(df.index)] =  [i, enhancement, focus, background]
 
-print(pixel_value_center)
-get_enhancement(image[12])
-plt.figure(figsize=(8, 8))
-plt.imshow(image[12], cmap='gray')
-plt.title('central focus')
-plt.show()
-
-image[12][image[12] > 75] = 0
-plt.imshow(image[12], cmap='autumn', interpolation='nearest')
-# Add colorbar
-plt.colorbar()
- 
-plt.title("Heatmap with color bar")
-plt.show()
+    print(df)
 
 
-
+if __name__ == "__main__":
+    main()
