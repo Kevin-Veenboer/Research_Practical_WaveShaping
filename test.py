@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import cv2
 
 # Load the TIFF file
-tiff_file = 'Tiffs/Phases/3/move_zstage00001_Measure0001.tif'
+tiff_file = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
 
-with tiff.TiffFile('Tiffs/Phases/3/move_zstage00001_Measure0001.tif') as tif:
+with tiff.TiffFile("Tiffs/Phases/3/move_zstage00001_Measure0001.tif") as tif:
     layers = tif.pages
     num_layers = len(layers)
     print(f"The TIFF file has {num_layers} layers.")
@@ -20,8 +20,8 @@ with tiff.TiffFile('Tiffs/Phases/3/move_zstage00001_Measure0001.tif') as tif:
     # Loop through each layer
     for i, page in enumerate(layers):
         image = page.asarray()
-        
-         # Check if the image is grayscale or color
+
+        # Check if the image is grayscale or color
         if len(image.shape) == 2:  # Grayscale image
             image_color = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         else:  # Color image
@@ -30,7 +30,7 @@ with tiff.TiffFile('Tiffs/Phases/3/move_zstage00001_Measure0001.tif') as tif:
         # Draw the marker
         cv2.circle(image_color, (x, y), radius, color, thickness)
 
-        plt.imshow(image_color, cmap='gray' if image.ndim == 2 else None)
-        
-        plt.title(f'Layer {i+1}')
+        plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None)
+
+        plt.title(f"Layer {i+1}")
         plt.show()
