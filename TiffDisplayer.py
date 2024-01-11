@@ -2,10 +2,16 @@ import tifffile as tiff
 import matplotlib.pyplot as plt
 import cv2
 
-path = "Tiffs/Baseline/DO_phase_test_speckle_after_measure.tif"
+path = "Tiffs/Baseline/DO_phase_test_speckle.tif"
+
+# The variable over takes a tuple with ((x_centre,y_centre), radius)
+
+cover = ((614, 610), 500)
+color = (255, 0, 0)
+thickness = 2
 
 
-def TiffShow(path):
+def TiffShow(path, multiples=True, save=False, cover=None):
     # open tiff file
     with tiff.TiffFile(path) as tif:
         layers = tif.pages
@@ -20,9 +26,13 @@ def TiffShow(path):
             else:
                 image_color = image
 
+            # Set cover is needed
+            if cover:
+                cv2.rectangle(image_color, cover[0], cover[1], color, thickness)
+
             # Show image
-            plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None, norm=norm)
+            plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None)
             plt.show()
 
 
-TiffShow(path)
+TiffShow(path, cover=cover)
