@@ -1,12 +1,13 @@
 import tifffile as tiff
 import matplotlib.pyplot as plt
 import cv2
+import os
 
 path = "Tiffs/Baseline/DO_phase_test_speckle.tif"
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
-cover = ((614, 610), 500)
+cover = ((200, 200), (1000, 1000))
 color = (255, 0, 0)
 thickness = 2
 
