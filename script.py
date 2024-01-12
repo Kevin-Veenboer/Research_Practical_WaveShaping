@@ -18,7 +18,7 @@ def main():
                 enhancement, focus, background = analyzer.get_enhancement(images[j])
                 df.loc[len(df.index)] =  [i, j, enhancement, focus, background]
 
-    df.to_csv('Results/segments.csv', index=False)
+    df.to_csv('Results/segments2.csv', index=False)
 
 
 if __name__ == "__main__":
