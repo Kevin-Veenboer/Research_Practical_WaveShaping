@@ -8,11 +8,11 @@ from rich.progress import track
 def main():
     data = {'Segments': [], 'Image': [], 'Enhancement': [], 'Focus': [], 'Background': []}
     df = pd.DataFrame(data)
-    for i in track(range(5, 31, 5), description='Processing...'):
+    for i in range(5, 31, 5):
         path = f"Tiffs/Segments/{i}/"
         files = listdir(path)
         enhancement = []
-        for file in files:
+        for file in track(files, description=path):
             images = analyzer.get_images(path+file)
             for j in range(25):
                 enhancement, focus, background = analyzer.get_enhancement(images[j])

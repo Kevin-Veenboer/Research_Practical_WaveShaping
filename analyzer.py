@@ -48,8 +48,9 @@ def get_enhancement(image):
     background_region = image[bg_y:bg_y+bg_size, bg_x:bg_x+bg_size]
 
     # Calculate average intensities
-    average_focus_intensity = np.mean(focus_region)
-    average_focus_intensity2 = get_average_focus(image, focus_x, focus_y, 2)
+    #average_focus_intensity = image[focus_x][focus_y]
+    #average_focus_intensity = np.mean(focus_region)
+    average_focus_intensity = get_average_focus(image, focus_x, focus_y, 2)
     average_background_intensity = get_average_background(image, focus_x, focus_y, 40)
 
     enhancement = average_focus_intensity/average_background_intensity

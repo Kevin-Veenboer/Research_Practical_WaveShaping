@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
-path = "Tiffs/Baseline/DO_phase_test_speckle.tif"
+path = "Tiffs/segments/5/move_zstage00001_Measure0001.tif"
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
