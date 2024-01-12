@@ -3,11 +3,18 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
+<<<<<<< HEAD
 path = "Tiffs/segments/5/move_zstage00001_Measure0001.tif"
+=======
+path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
+>>>>>>> 0c701adc538a2f26ea788c349d2058d1b25c571e
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
-cover = ((200, 200), (1000, 1000))
+
+# cover area :: ()
+
+cover = ((210, 210), (1020, 1000))
 color = (255, 0, 0)
 thickness = 2
 
@@ -15,7 +22,7 @@ thickness = 2
 def TiffShow(path, multiples=True, save=False, cover=None):
     # open tiff file
     with tiff.TiffFile(path) as tif:
-        layers = tif.pages
+        layers = tif.pages if len(tif.pages) == 1 else list(tif.pages[12])
 
         # Loop over layer and display images
         for page in layers:
@@ -36,4 +43,10 @@ def TiffShow(path, multiples=True, save=False, cover=None):
             plt.show()
 
 
-TiffShow(path, cover=cover)
+# TiffShow(path, cover=cover)
+with tiff.TiffFile(path) as tif:
+    test = tif.pages
+    print(repr(test))
+    repr(test)
+
+print(os.listdir(os.getcwd()))
