@@ -4,11 +4,7 @@ import cv2
 import os
 from Focus_grid_constructor import generate_grid
 
-<<<<<<< HEAD
-path = "Tiffs/segments/5/move_zstage00001_Measure0001.tif"
-=======
 path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
->>>>>>> 0c701adc538a2f26ea788c349d2058d1b25c571e
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
