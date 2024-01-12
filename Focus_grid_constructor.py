@@ -49,7 +49,7 @@ def generate_grid():
         ]
     )
 
-    return coord_grid.round(decimals=0).astype(int)
+    return [tuple(element) for element in coord_grid.round(decimals=0).astype(int)]
 
 
 def main():
