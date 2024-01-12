@@ -2,7 +2,7 @@ import tifffile as tiff
 import matplotlib.pyplot as plt
 import cv2
 import os
-from Focus_grid_constructor import generate_grid
+from focus_grid_constructor import generate_grid
 
 path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
 

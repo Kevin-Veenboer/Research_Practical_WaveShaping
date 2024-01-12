@@ -27,8 +27,6 @@ def generate_grid():
         ]
     )
 
-    print(grid_matrix)
-
     # Determine rotation matrix
     rotation = np.array(
         [
