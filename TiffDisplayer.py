@@ -8,7 +8,7 @@ path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
-grid = generate_grid()
+grid = generate_grid()[::-1]
 
 
 def TiffShow(path, multiples=True, save=False, cover=None):
