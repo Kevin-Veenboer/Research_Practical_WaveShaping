@@ -43,6 +43,3 @@ def get_focus_intensity(
 
 def read_image_data(path):
     return tiff.imread(path)
-
-
-grid_coordinates = generate_grid()
