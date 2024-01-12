@@ -26,10 +26,8 @@ def TiffShow(path, multiples=True, save=False, cover=None):
             else:
                 image_color = image
 
-            for coords in grid:
-                # print(type(tuple(coords)))
-                # print(tuple(coords))
-                cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
+            coords = grid.pop()
+            cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
 
             # Show image
             plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None)

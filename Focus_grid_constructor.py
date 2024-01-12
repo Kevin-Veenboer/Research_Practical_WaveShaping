@@ -6,11 +6,11 @@ def generate_grid():
     centre = (614, 610)
     distance = 160
     angle = 45
-    angle_rad = (angle / 180) * np.pi
+    angle_rad = -(angle / 180) * np.pi
     grid_number = 5
 
     # Determine x and y steps
-    grid_array_x = np.array(range(grid_number)) - 2
+    grid_array_x = np.array(range(grid_number))[::-1] - 2
     grid_array_y = np.copy(grid_array_x)
 
     # make step matrix
@@ -26,6 +26,8 @@ def generate_grid():
             for step_y in grid_array_y
         ]
     )
+
+    print(grid_matrix)
 
     # Determine rotation matrix
     rotation = np.array(
