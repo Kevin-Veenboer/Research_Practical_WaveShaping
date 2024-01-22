@@ -5,6 +5,7 @@ import os
 from focus_grid_constructor import generate_grid
 
 path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
+path_2 = "./TIFFs/Baseline/First_measurement.tif"
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
@@ -27,13 +28,13 @@ def TiffShow(path, multiples=True, save=False, cover=None):
                 image_color = image
 
             coords = grid.pop()
-            cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
+            # cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
 
-            cv2.circle(image_color, (614, 610), 550, (255, 0, 0), 3)
+            # cv2.circle(image_color, (614, 610), 550, (255, 0, 0), 3)
 
             # Show image
             plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None)
             plt.show()
 
 
-TiffShow(path)
+TiffShow(path_2)
