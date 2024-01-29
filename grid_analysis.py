@@ -10,7 +10,7 @@ from rich.progress import track
 
 data_folder_phases = "./TIFFs/Phases/"
 data_folder_segments = "./TIFFs/Segments/"
-# data_path_test = "./TIFFs/Phases/3/move_zstage00001_Measure0002.tif"
+data_path_test = "./TIFFs/Phases/3/move_zstage00001_Measure0002.tif"
 storage_path = "./Results/"
 
 
@@ -20,7 +20,7 @@ def get_focus_intensity(
     cable_centre=(614, 610),
     cable_radius=550,
     focus_masking_radius=70,
-    focus_radius=10,
+    focus_radius=12,
 ):
     """_summary_
 
@@ -83,8 +83,10 @@ def get_focus_intensity(
         # Store the intermediate results
         data_dict["focus_intensity"].append(np.mean(focus_data))
         data_dict["background_intensity"].append(np.mean(background_data))
-        data_dict["focus_std"].append(np.std(focus_data))
-        data_dict["background_std"].append(np.std(background_data))
+        data_dict["focus_std"].append(np.std(focus_data) / np.sqrt(focus_data.shape[0]))
+        data_dict["background_std"].append(
+            np.std(background_data) / np.sqrt(background_data.shape[0])
+        )
         data_dict["centre_distance"].append(int(round(centre_distance)))
 
     return data_dict
@@ -103,7 +105,9 @@ def read_image_data(path):
 # focus_grid = generate_grid()
 # test = pd.DataFrame(get_focus_intensity(image_data, focus_grid))
 # end = time.time()
-# print(f"One file to {end-start} seconds to process.\nThis means the phases will take about {19*(end-start)} seconds to process.\nThis means the phases will take about {29*(end-start)} seconds to process.")
+# print(
+#     f"One file to {end-start} seconds to process.\nThis means the phases will take about {19*(end-start)} seconds to process.\nThis means the phases will take about {29*(end-start)} seconds to process."
+# )
 
 
 ##########################
