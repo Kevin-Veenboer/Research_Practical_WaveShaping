@@ -6,13 +6,17 @@ from focus_grid_constructor import generate_grid
 
 path = "Tiffs/Phases/3/move_zstage00001_Measure0001.tif"
 path_2 = "./TIFFs/Baseline/First_measurement.tif"
+path_3 = "./TIFFs/Segments/30/move_zstage00001_Measure0003.tif"
+
+store = "./temp/"
+indexes = list(range(0, 25))
 
 # The variable over takes a tuple with ((x_centre,y_centre), radius)
 
 grid = generate_grid()[::-1]
 
 
-def TiffShow(path, multiples=True, save=False, cover=None):
+def TiffShow(path, multiples=True, save=False, cover=None, Store=False):
     # open tiff file
     with tiff.TiffFile(path) as tif:
         layers = tif.pages
@@ -32,9 +36,12 @@ def TiffShow(path, multiples=True, save=False, cover=None):
 
             # cv2.circle(image_color, (614, 610), 550, (255, 0, 0), 3)
 
+            if Store:
+                cv2.imwrite(store + f"img_{indexes.pop()}.tif", image)
+
             # Show image
             plt.imshow(image_color, cmap="gray" if image.ndim == 2 else None)
             plt.show()
 
 
-TiffShow(path_2)
+TiffShow(path_3, Store=True)
