@@ -32,9 +32,9 @@ def TiffShow(path, multiples=True, save=False, cover=None, Store=False):
                 image_color = image
 
             coords = grid.pop()
-            # cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
+            cv2.circle(image_color, tuple(coords), 4, (255, 0, 0), -1)
 
-            # cv2.circle(image_color, (614, 610), 550, (255, 0, 0), 3)
+            cv2.circle(image_color, (614, 610), 550, (255, 0, 0), 3)
 
             if Store:
                 cv2.imwrite(store + f"img_{indexes.pop()}.tif", image)
